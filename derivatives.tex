@@ -1,0 +1,246 @@
+\section{Derivatives}
+On 20 July 1969 the Apollo 11 lunar module landed on the moon, 112.75 hours after being launched. Since the distance from Earth to the moon is always at least 362,600 km, the average speed of the trip must have been at least 3216 km per hour. The astronauts would not have had a good time hitting the lunar surface at that speed, but of course they did not; they touched down gently at about one km per hour. What matters for a soft landing is vertical speed \emph{at the moment of touchdown}; but what does that mean? This moment lasts zero seconds, during which the ship travels zero kilometers, and an average speed of ``zero divided by zero" does not make much sense. The idea of speed at one moment in time -- better known as \emph{instantaneous velocity} -- can be defined using limits.\footnote{In fact this problem was one of the things that first led mathematicians to come up with the whole idea.}
+
+We encountered a problem trying to compute the average velocity of the lunar module at the moment when it touches the moon, and we did not get anything useful by considering its average velocity over the entire Earth-moon voyage, but there is no difficulty in considering its average velocity over the last, say, second before touchdown, which should be more relevant to the softness of the landing. And we can continue in this manner, taking the average velocity in the last half second, quarter second and so on; this gives us a sequence of velocities which  should give increasingly accurate descriptions of what is happening precisely at touchdown, so we will define the instantaneous velocity to be the limit of this sequence.
+
+Velocity is the rate of change of an object's position, but the same idea applies to the rate of change of any quantity over time; our changing quantity will be the value of some function $f(x)$, which changes as $x$ changes. The average rate of change of $f(x)$ in the interval $a \leq x \leq b$ is
+\[
+\frac{f(b)-f(a)}{b-a}
+\]
+In particular if $f(x)$ is the location of a moving object at time $x$, this becomes the familiar ``distance divided by time". Our idea was to keep making the interval $b-a$ smaller, shrinking toward zero without ever quite getting there. Above we suggested intervals of lengths $1, 1/2, 1/4 \cdots$ but everything should work out the same if we consider $0.1, 0.01, 0.001 \cdots$, or even if we stagger toward zero in some less regular-looking way. 
+
+When considering an abstract function (i.e. ``just numbers" with no measurement units), instantaneous velocity is called the \emph{derivative} of the function. Thus we arrive at:
+\begin{defn}\label{def:derivative}
+Let $f$ be continuous at $a$. The \emph{derivative} of $f$ at $a$, written $f'(a)$, is
+\[
+\lim \frac{f(a+\delta_n) - f(a)}{\delta_n}. 
+\]
+if this limit exists, is finite, and is the same for all sequences $\delta_n$ such that $\lim \delta_n = 0$ and for all $n$ $\delta_n \neq 0$.
+\end{defn}
+A function that has a derivative at $a$ is said to be \emph{differentiable} at $a$.
+
+As we did when we first introduced limits, we will, to get started, not give much thought to how the supposed limit might fail to exist; we will soon see that for most ``normal-looking" functions, it does exist. We do note one 
+subtle difference between this definition and the touchdown example: in computing $f'(a)$ we do not just consider ``times before $a$" (i.e. $x<a$), but also times after -- i.e. each $\delta_n$ could be positive or negative (since the limit is zero we can have a mix of both). 
+
+\subsection{Tangent Lines}
+{\color{red}Slopes, constant rate of change.}
+
+\subsection{Polynomials}
+Proof that derivative of $x^2$ is $2x$:
+\[
+\lim \frac{(x+d_n)^2 - x^2}{d_n} = \lim\frac{2xd_n + d_n^2}{d_n} = \lim 2x + \lim d_n = 2x + 0 = 2x
+\]
+These equalities are valid for any $d_n$ approaching zero.
+
+%Are fractional exponents equally easy? Can apply inverse theorem to $r^\mbox{th}$ root, but note that square root also comes right out of product rule.
+
+
+\subsection{Differentiation Formulae}
+Sum $f+g$ is almost immediate.
+
+We now consider differentiation of products:
+Let $h(x) = f(x)g(x)$ with $f$ and $g$ differentiable. Direct application of the definition gives $h'(x)$ as
+\[
+\lim \frac{f(x+\delta_n)g(x+\delta_n)-f(x)g(x)}{\delta_n}
+\]
+if this limit exists. What can we do here? We would like to hope that $h'(x)$ can somehow be expressed as some combination of $f'(x)$ and $g'(x)$, but how could we extract such things from what we have? Since $\delta_n$ is approaching zero, note that we have something that looks very close to $f(x)g'(x)$; if only we could replace $f(x+\delta_n)$ with the barely different $f(x)$ we could pull out $f(x)$. So we will write $f(x+\delta_n)$ as $f(x)+ Z$ and see what we can do with $Z$. Of course the ``error term" $Z$ is just  $f(x+\delta_n) - f(x)$, and we get
+\[
+\lim \frac{[f(x)+f(x+\delta_n) - f(x)]g(x+\delta_n)-f(x)g(x)}{\delta_n}
+\]
+which is
+\[
+\lim \frac{f(x)g(x+\delta_n)-f(x)g(x)}{\delta_n} + \frac{[f(x+\delta_n) - f(x)]g(x+\delta_n)}{\delta_n}
+\]
+thus
+\[
+f(x)g'(x) + \lim g(x+\delta_n) \lim \frac{[f(x+\delta_n) - f(x)]}{\delta_n}
+\]
+By continuity, we have $\lim g(x+\delta_n) = g(x)$ and thus
+
+\begin{thm}[Product Rule]\label{thm:productRule}
+Let $h(x)=f(x)g(x)$; if $f$ and $g$ are differentiable at $x$ then so is $h$ and
+\[
+h'(x) = f(x)g'(x) + f'(x)g(x)
+\]
+\end{thm}
+
+Note that this is symmetrical in $f$ and $g$, as it must be since $f(x)g(x)=g(x)f(x)$. 
+
+Next we consider \emph{composition} of functions, i.e. functions of the form $h(x) = f(g(x))$. If we can handle composition, we can handle just about any formula we can write: in later chapters we will see how to take the derivative of functions like $\log(x)$ and $\sin(x)$ and $2^x$, and then composition takes us to expressions like
+\[
+2^{\cos(\sqrt{\sin(\log x))}}
+\]
+
+But we are getting ahead of ourselves. The derivative of $h(x) = f(g(x))$ is by definition
+\begin{equation}
+\label{eq:chainRule1}
+\lim \frac{f(g(x+\delta_n)) - f(g(x))}{\delta_n}
+\end{equation}
+We might be forgiven if our first response to the question of what to do with this beast is along the lines of ``!?!?!", but let's take a deep breath and see what we have. As before, we hope that we can express this as some conglomeration of $f'(x)$ and $g'(x)$. Remember that the derivative of $f(x)$ involves evaluating $f$ at two very close points, and that is exactly what we have in our numerator; the close points are $g(x)$ and $g(x+\delta_n)$. The difference between these, i.e. $\delta'_n = g(x+\delta_n)-g(x)$, gives us a sequence that approaches zero (because we have assumed $g$ continuous): by definition this sequence $\delta'_n$ must work just fine for finding the derivative. Note however that we are taking the derivative of $f$ at $g(x)$ instead of at $x$. To get something that looks like $f'(g(x))$ we  need to have division by $g(x+\delta_n)-g(x)$, but that problem is easily fixed: we can  we rewrite (\ref{eq:chainRule1}) as
+
+\[\label{eq:chainRule2}
+\lim \frac{f(g(x+\delta_n)) - f(g(x))}{g(x+\delta_n)-g(x)} \frac{g(x+\delta_n)-g(x)}{\delta_n}
+\]
+Now the part on the left is indeed $f'(g(x))$, and the rest is precisely the definition of $g'(x)$, thus
+\begin{thm}
+The derivative of $f(g(x))$ is
+\[
+f'(g(x))g'(x)
+\]
+if $g$ is differentiable at $x$ and $f$ is differentiable at $g(x)$.
+\end{thm}
+This result is called the ``chain rule".
+{\color{red} NOTE: this proof needs more care since we could have division by zero!
+
+Show that chain rule gives consistent result for $x^n$; can derive $nx^{n-1}$ from product or composition or directly.}
+
+%Hard to give nice chain-rule examples without trig/log/exp functions, but can show consistency among various ways to write algebraics. Spivak actually just states the trig derivatives as known facts for the sake of examples; we can just introduce ``arbitrary" functions $S(x)$ and solve problems in terms of $S'(x)$; find the derivative of $S(x + S(x))$ et cetera.
+
+%We have cheated a bit in the chain rule; in defining the derivative we really need to enforce $\delta_n \neq 0$, so be careful. Indeed might make more sense to restrict to monotonic, but then need to demonstrate existence of monotonic sequence.
+
+
+
+\subsection{Exercises}
+\begin{itemize}
+\item Find the derivative of $f(g(h(x)))$ (assume all three functions are defined and differentiable everywhere -- or even better, state explicitly what we must assume for this derivative to make sense)
+\item Find a function $f$ such that $f'(x) = 2x^3+1$. Is there more than one such function?
+\end{itemize}
+
+
+\subsection{Tangent Lines, Again}
+We noted earlier that the derivative is the slope of the tangent line, and that the graph of $f(x)$ looks a lot like the tangent line if we stay close to $x_0$. Every calculus text emphasizes this, but most do not point out that the geometrical intuition can be expressed in a precise algebraic way. For that we need another definition:
+\begin{defn}
+A function $\nu$, continuous at $x_0$, is \emph{negligible} at $x_0$ if
+\[
+\lim \frac{\nu(x_0 + \delta_n)}{\delta_n} = 0
+\]
+For any sequence such that $\lim \delta_n = 0$
+\end{defn}
+Henceforth we usually leave the ``at $x_0$" implicit. Note being negligible implies, and is stronger than, merely asserting $\nu(x_0+\delta_n)$ goes to zero; the idea is that $\nu(x_0+\delta_n)$ approaches zero \emph{faster} than $\delta_n$ does. The difference between $f$ and its tangent-line approximation is a negligible function, i.e.
+\begin{thm}\label{thm:linearApprox}
+Let $f$ be differentiable at $x_0$. Then
+\[
+f(x) = f(x_0) + f'(x_0)(x-x_0) + \nu(x)
+\]
+for some function $\nu(x)$ which is negligible at $x_0$.
+\end{thm}
+\begin{proof}
+{\color{red} pretty straightforward from definitions}
+\end{proof}
+
+This view of the derivative gives us a different way to prove some theorems. Let's take another look at the product rule (theorem \ref{thm:productRule}); can we write $f(x)g(x)$ in a form that looks like theorem \ref{thm:linearApprox}? We now know that
+\[
+f(x)g(x) = \{f(x_0) + f'(x_0)(x-x_0) + \nu_f(x)\}\{g(x_0) + g'(x_0)(x-x_0) + \nu_g(x)\}
+\]
+where $\nu_f, \nu_g$ are both negligible. It looks like we will get quite a mess here, multiplying a pair of 3-term expressions to get a 9-term expression. But this is definitely a time to work smarter, not harder. All our previous results about limits and continuous functions tell us that:
+\begin{itemize}
+\item the sum of two negligible functions (at the same $x_0$) is negligible
+\item $\nu(x)h(x)$ is negligible if $h$ is continuous at $x_0$
+\end{itemize}
+Therefore \emph{all} of the terms involving $\nu_f$ or $\nu_g$ are negligible and can be combined into a single $\nu(x)$; what we are left with is
+\begin{flalign*}
+f(x)g(x) &= \\
+   &f(x_0)g(x_0) + (f(x_0)g'(x_0)+f'(x_0)g(x_0))(x-x_0) \\
+   &+ f'(x_0)g'(x_0)(x-x_0)^2+ \nu(x)
+\end{flalign*}
+and our previously-derived formula from the product rule has just appeared in the middle of things. We finish up by noting that $f'(x_0)g'(x_0)(x-x_0)^2$ is negligible (exercise below) and can be absorbed into $\nu(x)$.
+
+To really make this a proof of the product rule, we need the converse of theorem \ref{thm:linearApprox}, which asserts that, if $\nu$ is negligible, the constant being multiplied by $(x-x_0)$ cannot be anything but the derivative at $x_0$: that is left as an exercise. It might look at first glance like we have only demonstrated something about the derivative at a single point, but since $x_0$ could equally well be any point at which $fg$ is differentiable we are done.
+
+We need one more theorem to fill out our toolbox of differentiation formulae:
+
+\begin{thm}\label{thm:multInverseDeriv}
+If $f$ is differentiable at $x_0$ and $f(x_0) \neq 0$ then the derivative of $1/f(x)$ is
+\[
+\frac{-f'(x)}{f(x)^2}
+\]
+\end{thm}
+\begin{proof}
+Having introduced theorem \ref{thm:linearApprox}, we might as well use it at least one more time, so we begin with
+\[
+\frac{1}{f(x)} = \frac{1}{f(x_0) + f'(x_0)(x-x_0) + \nu(x)}
+\]
+This is not quite as nice as the product rule since we do not have $1/f(x_0)$ by itself, but we can make it appear with the right algebraic manipulation. In general
+\[
+\frac{1}{A + a} = \frac{1}{A} - \frac{a}{A(A+a)}
+\]
+so in particular
+\[
+\frac{1}{f(x)} = \frac{1}{f(x_0)} + \frac{-f'(x_0)(x-x_0)-\nu(x)}{f(x_0)(f(x_0)+f'(x_0)(x-x_0)+\nu(x))}
+\]
+as with the proof of the product rule, we can simplify this quite a bit by rolling up expressions that we know are negligible; in this case, $\nu(x)$ divided by something that we know is \emph{not} zero at $x=x_0$:
+\[
+\frac{1}{f(x)} = \frac{1}{f(x_0)}
++ \frac{-f'(x_0)}{f(x_0)^2+f(x_0)f'(x_0)(x-x_0)+\nu_0(x)}(x-x_0) - 
+  \nu_1(x)
+\]
+This is getting close to our claimed result; another application of rewriting $\frac{1}{A+a}$ is needed to clean up the denominator of the fraction, pulling out another negligible term to obtain
+\[
+\frac{1}{f(x)} = \frac{1}{f(x_0)}
++ \frac{-f'(x_0)}{f(x_0)^2}(x-x_0) - \nu_2(x)
+\]
+\end{proof}
+
+
+\subsubsection{Exercises}
+\begin{itemize}
+\item Derive a general formula for the derivative of $x^{-n}$ and $x^{-n/m}$.
+\item Find the derivative of $\frac{f(x)}{g(x)}$
+\item Prove that $f'(x_0)$ is the \emph{only} real number $\mu$ such that $f(x) = f(x_0) + \mu(x-x_0) + \nu(x)$ with $\nu(x)$ negligible, and that any function of this form is differentiable at $x_0$. Note this means we could just as well have \emph{defined}  $f'(x_0)$ as this unique $\mu$.
+\item Prove theorem \ref{thm:multInverseDeriv} directly from definition \ref{def:derivative}.
+\item Prove the claim made above that $f'(x_0)g'(x_0)(x-x_0)^2$ is negligible.
+\end{itemize}
+%this might be more distracting than helpful; material on closest linear approximation is essentially a better version of this idea
+%\subsection{Some Interpretations}
+%
+%Chain rule has a nice intuitive interpretation. $f'(g(x))$ tells us how fast $f(t)$ is changing as $t$ moves toward the number $g(x)$ ``at a steady rate"; note that $g(x)$ is just a number, it does not matter that we can write this number using the function $g$. The factor $g'(x)$ tells us how much $f(t)$ is slowed down or sped up if $t$ is driven by $g$; i.e. $t=g(t')$ where now $t'$ is time moving toward $x$ at a steady rate. 
+%
+%Rectangle interpretation of product rule.
+%
+%
+%Can tangent line to circle be expressed in terms of trigonometric functions?
+
+
+\subsection{Increasing and Decreasing Functions}
+{\color{red}
+Might start a new chapter here. 
+
+Positive rate of change means increasing.
+
+%{changed our mind on this one} This is where we introduce and motivate the supremum property. In exercise, note that Archimedean property is a consequence.
+
+Consider max point of function. The derivative should not be positive, that would mean we could get a larger value by moving a bit to the right. Similarly cannot be negative.
+
+Max/min at zero derivative; Increasing implies nonnegative derivative.
+}%end \color{red}
+
+\subsection{Second Derivative}
+{\color{red}Convexity and Concavity}
+
+
+\subsection{Non-Differentiable Functions}
+{\color{red}Absolute value is example of non-differentiability; sequences approaching zero from the left and from the right give different results.} %another case where sequence-based approach simplifies
+
+If $\delta_n = 1/n$ then
+\[
+\lim \frac{|\delta_n| - |0|}{\delta_n} = \frac{\delta_n}{\delta_n} = 1
+\]
+but if $\delta_n = -1/n$ then
+\[
+\lim\frac{|\delta_n| - |0|}{\delta_n} = \frac{-\delta_n}{\delta_n} = -1
+\]
+The point here is that $|x|$ looks like $x$ on one side of the origin and like $-x$ on the other side; we can get endless examples of continuous non-differentiable functions by ``gluing together" two unrelated differentiable functions that happen to satisfy $f(x_0)=g(x_0)$ at some $x_0$ (figure ??).
+
+
+\subsubsection{Exercises}
+%Path of a point on a wheel is also non-differentiable where point touches ground.
+\begin{itemize}
+\item In the definition of the derivative, the assumption of continuity is essential; show that the required limit cannot exist if $f$ is not continuous.
+%(true since definition requires numerator to be approaching zero). If derivative is $\alpha$ then when $|\delta_n| < \varepsilon$
+%\[
+% (\alpha - \varepsilon)\varepsilon \leq f(x + \delta_n) -f(x) \leq (\alpha + \varepsilon)\varepsilon
+%\]
+\item If $f'(x)=0$ for all $x$, then $f$ is a constant function.
+\end{itemize}
+
+%Compute derivative of area under a curve as prelude to integration -- how much of that can be turned into an exercise? But derivative of $f$ when $f$ itself is unknown might be overly abstract -- as always, want to present with proper motivation.

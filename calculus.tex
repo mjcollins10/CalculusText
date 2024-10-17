@@ -1,0 +1,101 @@
+\documentclass[12pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{geometry}                		% See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   		% ... or a4paper or a5paper or ... 
+%\geometry{landscape}                		% Activate for rotated page geometry
+%\usepackage[parfill]{parskip}    		% Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{xcolor}				% Use pdf, png, jpg, or eps§ with pdflatex; use eps in DVI mode
+								% TeX will automatically convert eps --> pdf in pdflatex	
+\usepackage{amssymb, amsmath,amsthm}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{claim}{Claim}
+\newtheorem{assumption}{Assumption}
+
+\graphicspath{{figures/}}	
+
+\author{Michael J. Collins\\Senior Analyst, Daniel H. Wagner Associates\\mjcollins10@gmail.com}
+\title{Calculus, A Little Bit Differently}
+\date{}
+\begin{document}
+
+%consider defining in terms of open intervals rather than delta (but mention that \pm\varepsilon is easiest way to define an 
+%interval and use this in proofs. Either way switch to notation that makes dependence of N on \varepsilon obvious,
+%either $N_{\varepsilon}$ or $N_I$ where $I$ is an open interval.
+
+%%TODO: all fig/thm numbers should be derived from section/subsection numbering
+
+%what to do with this? Springer author site says "We typically publish textbooks at the advanced undergraduate and graduate level so we are not looking for core first-year undergraduate textbooks". That rules out calculus, although they do publish introductory combinatorics. Look into other options; or just put it online and try to get some buzz going from Rich's email list and branch out from there. Wiki textbooks? They have calc already of course -- room for two? Or just a link to my stuff -- must be on github (with large-file plugin for PDF diagrams).
+%Should we try to get some physics applications and programming exercises in there?
+%If we have publicly available link, must make sure we link to clean version with reasonably complete sections
+
+%leanpub.com looks promising; closely linked to openIntro which already has "apex calculus" by Gregory Hartman;
+%that book features interactive graphics (definitely something a modern calc text should have), and uses the hyperref
+%package so every mention of theorem a.b links to that theorem etc. Feel out of my depth in trying to create decent
+%graphics -- but the whole thing is on github, so can try just stealing some of their stuff! and Hartman can be reached at
+%apexcalculus@gmail.com
+
+%There is now a fourth edition of Spivak (July 2008), should compare although I doubt the underlying structure has changed. Should look at more application-oriented books to see what sort of examples they use and how they handle/evade the theoretical issues. Also Amir Babak Aazami's "48 Hours of Honors Calculus" is another attempt at something at Spivak's level; he also begins with the limit of a sequence, but zips through the foundations more quickly and even defines continuity in terms of open sets! (and the actual definition of derivative is the standard one). So I cannot claim that starting with sequences is novel; Amazon preview does not show how he gets from sequences to $\lim_{x \to a} f(x)$, but it is clear from exercise 4.14 (pg. 80). that he does use the classic epsilon/delta definition of $\lim$. Would be worth $40 to buy this one.
+
+\maketitle
+Dedicated to my high-school math teacher Robert Sikso, who said ``no, stick with this, I think you can do it" when I wanted to drop my freshman advanced algebra class because I was finding it difficult.
+
+
+\section*{Introduction for Instructors and Mentors}
+This text covers the standard material of a differential calculus course, but it departs from convention by taking the \emph{limit of a sequence at infinity} as the most fundamental concept; derivatives and continuity are defined in terms of such sequences, while the notion of ``the limit of $f(x)$ as $x \to a$'' does not appear. The treatment of limits emphasizes the notion of open intervals.
+
+Trigonometric functions and their derivatives are treated in a  geometric (but rigorous) manner.
+The more subtle properties of the real numbers (i.e. the Archimedean property and convergence of Cauchy sequences) are introduced as needed, in contexts where they arise naturally. %I have generally avoided proofs by contradiction. 
+
+ I hope that many students will find this approach helpful.  I think that ``$\lim_{x \to a}f(x)$" is rather artificial in elementary calculus, since for all ``normal'' functions  this is just $f(a)$; in the first two chapters I believe I present a convincing case for taking sequences and series as the starting point. %The extensive use of open intervals might be seen as an introduction to topology, but that was not my motivation; the notion of ``an interval with the endpoints missing'' is no more abstract than anything else students have to absorb here, and the use of intervals simplifies many proofs.
+%in fact, so far have not had as much emphasis on open intervals as I had anticipated
+There are other texts which put sequences and series first (\emph{48 Hours of Honors Calculus} by Amir Babak Aazami) but I do not know of any that define derivatives and continuity in terms of sequences and bypass $\lim_{x \to a}f(x)$.
+%I do not know of any other textbook which puts topics in this order, although this way of looking at things has much in common with the approach based on infinitessimals -- while avoiding the technical difficulty of figuring out what an infinitessimal number is. 
+
+I acknowledge a great debt to Michael Spivak's \emph{Calculus}, a model of clear exposition and the source from which I learned the subject.
+
+{\color{red}Descriptions of sections that still need to be written are printed in red, although at this point almost every section needs more exercises and additional figures.}
+
+
+\section*{Preface}
+This book covers the standard material for a course in differential calculus, taking a somewhat different approach from other textbooks. If you compare it to a standard text, you will see that the definitions I give for basic concepts -- ``continuous function", ``derivative" et cetera -- look different. But all these definitions \emph{mean} exactly the same things -- a function is ``continuous" by this book's definition if and only if it is continuous according to the standard definition et cetera. I have restated the classic definitions in a way that I hope is easier to understand, simpler, and more focused on fundamental concepts. But I have not just changed the wording of definitions; the new definitions require us to cover topics in a rather different order from other books, and lead to different choices about what topics to emphasize. 
+ 
+Calculus inherently requires a solid understanding of algebra. Students studying calculus are typically familiar with standard high-school problems such as solving for $x$ in a quadratic equation like
+\[
+x^2 - 3x + 2 = 0 
+\]
+or solving for $x,y$ in a system of  linear equations like
+\begin{align*}
+2x +& 5y = 0\\
+-x -& 8y = 3
+\end{align*}
+et cetera. More generally, the reader will have to be comfortable with manipulating algebraic expressions and inequalities. %I have not included and refresher material on pre-calculus, since such review is available elsewhere.%If you work through all the exercises, you should end up being quite adept at such manipulations! 
+
+%This text gives only passing mention to applications of calculus in science and engineering. To really give convincing applications of mathematical theory in some particular domain requires a fairly deep exploration of  that domain, which is not possible here.  So I just ask the reader to take it for granted that when we sometimes motivate our equations by saying that they describe the motion of an object, or some other quantity varying in time or space, we are talking about things of fundamental importance in the physical sciences.
+
+\pagebreak
+\include{limits}
+
+\pagebreak
+\include{InfiniteSeries}
+
+\pagebreak
+\include{continuity}
+
+\pagebreak
+\include{derivatives}
+
+\pagebreak
+\include{trig}
+
+%\pagebreak
+%\include{logs} %barely started
+
+%\pagebreak
+%\include{sequences} %barely started
+
+%\include{integration} %barely started, but thinking through a sequence-oriented definition;
+%general idea is to define integral as common limit of all sequences of approximations
+
+\end{document}

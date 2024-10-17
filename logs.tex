@@ -1,0 +1,16 @@
+\section{Exponentials and Logarithms}
+ What is the derivative of $2^x$? We have not defined the meaning of an irrational exponent like $2^\pi$, but there is no doubt whatsoever about what it should be -- it has got to be $\lim 2^{r_n}$, where $r_n$ is any sequence of \emph{rational} numbers approaching $\pi$. We would have to prove that this limit exists and is the same for all such sequences. But in fact there is an even better way to go about making sense of irrational exponents-- a slightly indirect approach to this problem will pay huge dividends.
+ 
+Assuming we can define irrational exponents, the derivative of $f(x)=b^x$ is
+\[
+\lim \frac{b^{x+d_n}-b^x}{d_n}
+\] 
+The thing to notice here is that $b^x$ can be pulled out of the numerator to get
+\[
+b^x\lim \frac{b^{d_n}-1}{d_n}
+\]
+The limit does not depend upon $x$, so if the limit exists, we have $f'(x) = cf(x)$ for some constant $c$ which depends on $b$.%Can always try numerical experiments with such things, but what insight can we get from such? Aha; use $z^k-1 = (z-1)(1+z+z^2+\cdots z^{k-1})$
+
+Intuitive explanation of why derivative is proportional to $y$. Change of $b$ is just a change of units.
+
+Do we need to put this after integration?

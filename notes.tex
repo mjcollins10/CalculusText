@@ -1,0 +1,46 @@
+What would a more interactive (i.e. zybooks) version look like, and is there a good platform for building such a thing?
+
+We can simplify definitions further by defining 'eventually always' -- a statement about the terms of $x_n$ is ``eventually always true'' if there exists $N$ such that it is true for all $n>N$. In proofs we always need to immediately unpack definition and quantify over $N$, but it makes it easier to talk about things informally, and gives shorter, less intimidating definitions. More standardizing of language: consistently call $N$  a number "guaranteed" by the EA statement. Must emphasize ``a number" not ``the number".
+
+Structurally this corresponds to temporal-logic operators (and will separate the two terms when we consider $\liminf$ and $\limsup$). In other contexts, ``always" is written as (square) and ``eventually" is written as (diamond).
+
+So our first definition becomes: 
+\[
+\lim a_n = A
+\]
+if and only if, given any $\varepsilon > 0$, eventually always $|a_n - A| < \varepsilon$. We write $\lim_{n \to \infty} a_n = b$ if there are several parameters in the expression $a_n$ and we need to specify which variable is going to infinity.
+
+
+What is the best way to generate function graphs? Matplotlib?
+
+Need an ``aside" somewhere on technical conditions
+
+
+%Another observation that has no pedagogical relevance, but it shows that the proposed definition really is better. Suppose $f$ is defined at an isolated point $a$; the epsilon-delta definition does not apply here, although of course $f$ is continuous according to the more absract definition in terms of inverse images of open sets (any function on a discrete domain is continuous). But our definition using sequences trivially gives us continuity, since the only sequence approaching $a$ is the constant sequence. Of course the definition needs an extra technical bit: all sequences for which every $x_n$ is in the domain of $f$.
+%Also we can define $\lim_{x \to a} f(x)$ as being $\lim f(x_n)$ if this limit exists and is the same for all sequences $x$ that approach $a$, and undefined otherwise. Gives an obvious way to prove that this limit does not exist, just find two such sequences. But in fact have little (no?) need for this concept!
+
+Question: should we use ``austere" notation like $\lim d = 0$ in preference to ``explicit" notation like $\lim_{n \to \infty} d_n$? Austere notation is logically appealing, although perhaps it is sometimes nice to use $a$ to denote the limit of $a_n$?
+
+
+advice on reading forall/exists proofs: 1) slow down, info is densely packed, you must read such
+things more slowly than normal text 2) all/exists mean the same thing here as they mean in ordinary speech 3) draw pictures! easy to get confused as to whether claim gets stronger/weaker as some parameter gets smaller/larger
+We have no problem with such reasoning in everyday life -- things like ``if I am older than Joe  then I am definitely older than Joe's children, and I might be older than Joe's father". But the human brain has a harder time dealing with pure numbers with no concrete context, so we have to slow down a little and think about what we are saying.
+
+Meyer's text starts with areas -- does integrals before derivatives! 
+another way to get interesting limits before derivatives: use area calculations to demonstrate the squeeze theorem -- constant sequence (area under parabola) is squeezed by upper/lower limits. But do not need squeeze theorem in full generality, just fact that increasing sequence cannot have limit that is greater than every $a_n$? In fact we will avoid dealing with pair of sequences and just assert that (say) lower limit should equal area because we fill up the space.
+
+Comment: should we consistently use "x in open interval" in preference to the explicit inequality, maybe even introduce $I$ notation for interval? At least make frequent use of interval expression. Of course can go whole hog and drop delta from definition, just say 'for every open interval' -- introduce deltas as needed for specific proofs. If you are going to write a ``new" calculus textbook, why not go whole hog? But do not see how to derive something like ``derivative of sine" without deltas to give us actual expressions with which to work.
+
+% Will coverage of infinite sequences be any different from standard approach (i.e. do standard books reach back much to derivatives and other earlier results on limits? Spivak uses mean value theorem)
+
+might add something like this to further motivate limits as definitions of irrational quantities:
+%because now there is no algebraic expression we can put on the other side of the equals sign. Such numbers have to be specified by describing increasingly accurate approximations. In the case of $\sqrt{2}$ we can see that the approximations are getting closer by multiplying 1.4142135623730951 by itself and seeing that the result is very nearly 2. With $\pi$ it is not so obvious where the numbers come from, but eventually we will use what we know about geometry to show that a particular sequence of computations must give numbers that keep getting closer to the ratio of circumference to diameter -- and we will thus show that the well-known sequence of digits, which we can easily look up, really is correct! 
+
+%The phrase ``ratio of circumference to diameter" is unambiguous, but it is not clear how we can manipulate it. 
+%---not quite happy with phrasing here; 'keep it short' sounds like good advice, maybe too much digression here
+%pi is not so clear, physical measurement only gives roughly 3.15 if that
+%Even if not skeptical about claimed value of $\pi$, we will at least assuage our curiosity about ``how the heck did they come up with those numbers".
+
+Alas after a fair amount of head-scratching we just cannot find a purely geometric derivation of the Taylor series for $\sin(x)$
+
+Eventually will have to revisit basic properties of the real number system -- i.e. assumption that limit always exists for a Cauchy sequence. Consider Spivak's ``three hard theorems" (intermediate value theorem and continuous function attains a maximum on a closed interval); where do we need these? They follow from the least-upper-bound property. We have already allowed ourselves to just assume that $1/\varepsilon$ can be made arbitrarily large by making $\varepsilon$ small enough, which we can allow as an axiom but might not be enough. Where do we really need these theorems? Have I implicitly used them somewhere? I suspect that dealing with inverse functions requires intermediate value theorem, maybe nowhere else? Maybe not really needed until we get to differentiation?
